@@ -1,0 +1,69 @@
+﻿@using Dataiku
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+<!doctype html>
+<html>
+    <head>
+        @{
+            var backGroundColor = "";
+            if (@ViewData["Odds"]  != null)
+            {
+                var percentage = Int16.Parse(@ViewData["Odds"].ToString()) / 100;
+                backGroundColor =  $"rgb({180 * (1 -percentage)},{180 * percentage},0)";
+            }
+            else
+            {
+                backGroundColor = "white";
+            }
+        }
+        <style>            
+            .center-all {
+                right: 50%;
+                bottom: 50%;
+                transform: translate(50%, 50%);
+                position: absolute;
+            }
+            body{
+                background-color: black;
+            }
+            h1{
+                color: white;
+            }
+            .percentage{
+                background-color: @backGroundColor;
+            }
+
+            .custom-file-upload{
+                color: white
+            }
+            .input-file{
+                color: white
+            }
+            label {
+                display: block;
+               margin-bottom: 20px;
+            }
+        </style>
+
+    </head>
+
+<body> 
+    <div class="center-all">
+        <h1> Quick, Upload the empire plan!</h1>
+        <form asp-controller="Odds" asp-action ="calculate" method="post" enctype="multipart/form-data">
+            <div>
+                <label for="upload" class="custom-file-upload">
+                    Upload Plan:
+                    <input type="file" name="empireFile" id="upload" class="input-file">
+                </label>
+            </div>
+            <div>
+                <button type="submit">Compute Odds</button>
+            </div>
+        </form>
+        @if (@ViewData["Odds"]  != null)
+        {
+            <p class="percentage"> You have @ViewData["Odds"]% chance to escape! </p>
+        }
+    </div>
+</body>
+</html>
