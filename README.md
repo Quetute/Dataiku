@@ -4,7 +4,7 @@
 2. Add your files and specify the path of the millenium falcon in `appsettings.json`
 3. Build and publish the solution: `dotnet publish -r [Runtime] -c Release`  and target the runtime you want ([list here](https://github.com/dotnet/docs/blob/master/docs/core/rid-catalog.md)).
 4. Launch the solution: `./bin/Release/netcoreapp2.2/[Runtime]/Dataiku.exe`.
-5. open your  browser on `https://localhost:5001`
+5. open your  browser on `https://localhost:5000`
 
 # Design
  
